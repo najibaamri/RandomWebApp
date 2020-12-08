@@ -1,0 +1,72 @@
+{
+  "personnes": [
+    {
+      "nom": "Amri",
+      "prenom": "Najiba",
+      "sexe": "feminin",
+      "dateNaissance": "19/04/1998",
+      "lieuNaissance": "Le Kef",
+      "nationalite": "tunisienne",
+      "nomPere": "Amri Adel",
+      "natioPere": "tunisienne",
+      "nomMere": "Tebessi Neila",
+      "natioMere": "tunisienne",
+      "id": 1,
+      "email": "najiba.amri@esprit.tn",
+      "password": "najiba",
+      "username": "najiba"
+    },
+    {
+      "nom": "Amri",
+      "prenom": "moemen",
+      "sexe": "masculin",
+      "dateNaissance": "2020-12-16",
+      "lieuNaissance": "tunis",
+      "nationalite": "tunisienne",
+      "nomPere": "Amri Adel",
+      "natioPere": "tunisienne",
+      "nomMere": "Tebessi Neila",
+      "natioMere": "tunisienne",
+      "id": 2
+    },
+    {
+      "nom": "ffdfd",
+      "prenom": "dhdhdh",
+      "dateNaissance": "2020-12-09",
+      "lieuNaissance": "tejerouine",
+      "nationalite": "ffhdhfd",
+      "sexe": "hfdhfd",
+      "nomPere": "dfdfd",
+      "natioPere": "fdsds",
+      "nomMere": "eezezze",
+      "natioMere": "zazaa",
+      "id": 3
+    },
+    {
+      "nom": "Benour",
+      "prenom": "Mohamed Amine",
+      "sexe": "masculin",
+      "dateNaissance": "1997-07-01",
+      "lieuNaissance": "kef",
+      "nationalite": "tunisienne",
+      "nomPere": "Benour Faouzi",
+      "natioPere": "tunisienne",
+      "nomMere": "Samaali Baya",
+      "natioMere": "française",
+      "id": 6
+    },
+    {
+      "nom": "Amri",
+      "prenom": "Moemen",
+      "sexe": "masculin",
+      "dateNaissance": "2008-11-15",
+      "lieuNaissance": "kef",
+      "nationalite": "tunisienne",
+      "nomPere": "Adel Amri",
+      "natioPere": "tunisienne",
+      "nomMere": "Adel Amri",
+      "natioMere": "française",
+      "id": 7
+    }
+  ]
+}
