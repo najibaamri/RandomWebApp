@@ -13,4 +13,5 @@ export class Personne {
   email: string;
   password: string;
   username: string;
+  cin: number;
 }

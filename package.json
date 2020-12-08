@@ -22,6 +22,7 @@
     "bootstrap": "^4.5.3",
     "filterizr": "^2.2.4",
     "json-server": "^0.16.3",
+    "jspdf": "^2.2.0",
     "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

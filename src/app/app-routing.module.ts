@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'personnes/updatePersonne/:id', component: UpdatePersonneComponent },
   { path: 'login', component: LoginComponent },
   { path: 'onlineServices', component: OnlineServicesComponent },
-  { path: 'searchData', component: SearchDataComponent },
+  { path: 'searchData/:type', component: SearchDataComponent },
 ];
 
 @NgModule({

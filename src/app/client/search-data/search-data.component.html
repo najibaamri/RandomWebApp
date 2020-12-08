@@ -1,1 +1,91 @@
-<p>search-data works!</p>
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <ol>
+      <li><a routerLink="/accueilClient">Home</a></li>
+      <li>Contact</li>
+    </ol>
+    <h2>Contact</h2>
+  </div>
+</section>
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>{{ type }}</h2>
+      <p>
+        Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
+        aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
+        quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
+        sit in iste officiis commodi quidem hic quas.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-5 d-flex align-items-stretch">
+        <div class="info">
+          <img src="assets/front/img/naissance.jpg" />
+        </div>
+      </div>
+
+      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        <form class="php-email-form" [formGroup]="SearchForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for=""> Nom</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="nom"
+                data-rule="minlen:4"
+                data-msg="Please enter at least 4 chars"
+              />
+              <div class="validate"></div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for=""> Prénom</label>
+              <input
+                class="form-control"
+                data-rule="email"
+                formControlName="prenom"
+                data-msg="Please enter a valid email"
+              />
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="type == 'naissance'">
+            <label for=""> Date de naissance</label>
+            <input
+              type="text"
+              class="form-control"
+              data-rule="minlen:4"
+              formControlName="dateNaissance"
+              data-msg="Please enter at least 8 chars of subject"
+            />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group" *ngIf="type == 'deces'">
+            <label for=""> Numéro cin</label>
+            <input
+              type="number"
+              class="form-control"
+              data-rule="minlen:4"
+              formControlName="cin"
+              data-msg="Please enter at least 8 chars of subject"
+            />
+            <div class="validate"></div>
+          </div>
+
+          <div class="mb-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">
+              Your message has been sent. Thank you!
+            </div>
+          </div>
+          <div class="text-center">
+            <button (click)="downloadPDF()" type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

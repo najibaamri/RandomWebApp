@@ -37,4 +37,22 @@ export class PersonneService {
   handleError(error) {
     return throwError(error.message || 'server Error');
   }
+
+  searchPerson(
+    nom: string,
+    prenom: string,
+    dateNaissance: string,
+    cin: number
+  ) {
+    return this.http.get<Personne[]>(
+      'http://localhost:3000/personnes?nom=' +
+        nom +
+        '&prenom=' +
+        prenom +
+        '&dateNaissance=' +
+        dateNaissance +
+        '&cin=' +
+        cin
+    );
+  }
 }

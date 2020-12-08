@@ -1,4 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { SearchDataComponent } from '../search-data/search-data.component';
 
 @Component({
   selector: 'app-online-services',
@@ -6,12 +14,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./online-services.component.css'],
 })
 export class OnlineServicesComponent implements OnInit {
-  public type: string;
   constructor() {}
 
   ngOnInit(): void {}
-  naissance() {
-    this.type = 'naissance';
-    console.log(this.type);
-  }
 }
