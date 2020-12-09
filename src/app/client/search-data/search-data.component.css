@@ -1,0 +1,10 @@
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+/* Centered text */
+.container {
+  position: relative;
+  text-align: center;
+}

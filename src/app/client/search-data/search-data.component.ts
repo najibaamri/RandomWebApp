@@ -2,8 +2,9 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PersonneService } from 'src/app/services/personne.service';
-import { jsPDF } from 'jspdf';
+import * as html2pdf from 'html2pdf.js';
 import { Personne } from 'src/app/model/personne';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-search-data',
@@ -14,13 +15,18 @@ export class SearchDataComponent implements OnInit {
   type: string;
   SearchForm: FormGroup;
   listPersons: Personne[];
+  isLoggedIn: boolean;
+  username: string;
+  CurrentDate = Date.now();
 
   constructor(
     private service: ActivatedRoute,
-    private servicePerson: PersonneService
+    private servicePerson: PersonneService,
+    private serviceAuth: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.serviceAuth.isLoggedIn;
     this.type = this.service.snapshot.params.type;
     console.log(this.type);
     this.SearchForm = new FormGroup({
@@ -30,7 +36,7 @@ export class SearchDataComponent implements OnInit {
       cin: new FormControl(),
     });
   }
-  downloadPDF() {
+  HtmlPDF() {
     this.servicePerson
       .searchPerson(
         this.SearchForm.get('nom').value,
@@ -41,25 +47,15 @@ export class SearchDataComponent implements OnInit {
       .subscribe(
         (data: Personne[]) => {
           this.listPersons = data;
-          if (this.type == 'naissance') {
-            console.log('downloading');
-            const doc = new jsPDF();
-            doc.text('Acte de Naissance', 15, 15);
-            doc.text(this.listPersons[0].nom, 15, 30);
-            doc.text(this.listPersons[0].prenom, 15, 40);
-            doc.text(this.listPersons[0].dateNaissance, 15, 50);
-            doc.save('acteNaissance');
-          }
-          if (this.type == 'deces') {
-            console.log('downloading');
-            const doc = new jsPDF();
-            let a: string = this.listPersons[0].cin.toString();
-            doc.text('Acte de Décès', 15, 15);
-            doc.text(this.listPersons[0].nom, 15, 30);
-            doc.text(this.listPersons[0].prenom, 15, 40);
-            doc.text(a, 15, 50);
-            doc.save('acteDécès');
-          }
+          this.username = localStorage.getItem('username');
+          const options = {
+            filename: 'html.pdf',
+            image: { type: 'png' },
+            html2canvas: {},
+            jsPDF: { orientation: 'portrait' },
+          };
+          const content: Element = document.getElementById('naissance');
+          html2pdf().from(content).set(options).save();
         },
         (error) => {
           alert(error);

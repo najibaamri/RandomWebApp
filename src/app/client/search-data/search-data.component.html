@@ -7,7 +7,7 @@
     <h2>Contact</h2>
   </div>
 </section>
-<section id="contact" class="contact">
+<section id="contact" class="contact" [hidden]="isLoggedIn == false">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>{{ type }}</h2>
@@ -82,10 +82,170 @@
             </div>
           </div>
           <div class="text-center">
-            <button (click)="downloadPDF()" type="submit">Envoyer</button>
+            <button (click)="HtmlPDF()" type="submit">Envoyer</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </section>
+<div id="naissance">
+  <table>
+    <tr>
+      <td style="width: 30%">
+        <p style="text-align: center">REPUBLIQUE TUNISIENNE</p>
+        <h6 style="text-align: center">MINISTERE DES AFFAIRES</h6>
+        <h6 style="text-align: center">LOCALES ET DE L'ENVIRONNEMENT</h6>
+        <B>Gouvernorat: ARIANA</B><br />
+        <b>Délégation: ARIANA</b><br />
+        <b>Commune: ARIANA</b><br />
+        <b>Arrondi. com.: </b><br />
+        <b>Secteur: </b>
+      </td>
+      <td style="text-align: center; width: 40%">
+        <img src="assets/front/img/symbole.png" style="width: 20%" />
+        <h5>EXTRAIT DES REGISTRES</h5>
+        <h6>
+          DE L'ETAT CIVIL <br />
+          _______________
+        </h6>
+        <h1>NAISSANCE</h1>
+        <em>(VERSION FRANCAISE)</em>
+      </td>
+      <td align="right">
+        <h3>C / 2041605</h3>
+        <p style="border-style: solid; border-radius: 20px">
+          Année: 1998<br />
+          Acte N°: 677<br />
+          -Déclaration:<br />
+          -ou jugement:<br />
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="table table-header-rotated" *ngFor="let person of listPersons">
+    <tbody>
+      <tr>
+        <th class="row-header">NOM <br />PRENOM</th>
+        <td>
+          <tr>
+            {{
+              person.nom.toUpperCase()
+            }}
+            *
+          </tr>
+          <tr>
+            {{
+              person.prenom.toUpperCase()
+            }}
+            *
+          </tr>
+        </td>
+      </tr>
+      <tr>
+        <th class="row-header">
+          Date de naissance <br />Jour, mois et année <br />(en toutes lettres)
+        </th>
+        <td>{{ person.dateNaissance }} *</td>
+      </tr>
+      <tr>
+        <th class="row-header">Lieu de naissance</th>
+        <td>{{ person.lieuNaissance.toUpperCase() }} *</td>
+      </tr>
+      <tr>
+        <th class="row-header">Sexe</th>
+        <td>{{ person.sexe.toUpperCase() }} *</td>
+      </tr>
+      <tr>
+        <th class="row-header">
+          Nom, prénoms,<br />profession et nationalité<br />du père
+        </th>
+        <td>
+          <tr>
+            {{
+              person.nomPere.toUpperCase()
+            }}
+            *
+          </tr>
+          <tr>
+            {{
+              person.natioPere.toUpperCase()
+            }}
+            *
+          </tr>
+        </td>
+      </tr>
+      <tr>
+        <th class="row-header">
+          Nom, prénoms,<br />profession et nationalité<br />de la mère
+        </th>
+        <td>
+          <tr>
+            {{
+              person.nomMere.toUpperCase()
+            }}
+            *
+          </tr>
+          <tr>
+            {{
+              person.natioMere.toUpperCase()
+            }}
+            *
+          </tr>
+        </td>
+      </tr>
+      <tr>
+        <th class="row-header">
+          Date de la déclaration<br />(jour, mois, année, heure)
+        </th>
+        <td>{{ CurrentDate.toString() }} *</td>
+      </tr>
+
+      <tr>
+        <th class="row-header">
+          Nom, prénoms,<br />et profession du déclarant<br />ou le tribunal
+        </th>
+        <td>{{ username.toUpperCase() }} *</td>
+      </tr>
+      <tr>
+        <th class="row-header">
+          Nom, prénoms<br />et qualité de l'officier de l'état civil
+        </th>
+        <td>MOHAMED AYACHI ABIDI *</td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <tr align="center">
+      <h5 style="text-align: center">Observations</h5>
+      N E A N T
+    </tr>
+    <tr>
+      <td>Imprimerie Officielle Prix: 0<sup>D</sup>,500</td>
+      <td>
+        Pour version française certifiée conforme à l'original<br />
+        ARIANA 3 DECEMBRE 2020
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 60%">
+        <p style="border-style: solid; border-radius: 20px">
+          Note: Tout faux, toute altération dans les actes de l'état civil
+          donnent lieu aux <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poursuites
+          judiciaires conformément aux lois réglementant l'état civil et au<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; code pénal.
+        </p>
+      </td>
+      <td>
+        <p>L'officier de l'état civil</p>
+        <img
+          src="assets/front/img/cachet.png"
+          style="width: 30%; float: right; margin-right: 50px"
+        />
+        <img src="assets/front/img/signature.png" style="width: 30%" />
+        <h6>RAOUANI RIDHA</h6>
+      </td>
+    </tr>
+  </table>
+</div>
