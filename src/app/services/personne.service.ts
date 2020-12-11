@@ -42,17 +42,27 @@ export class PersonneService {
     nom: string,
     prenom: string,
     dateNaissance: string,
-    cin: number
+    cin: number,
+    type: string
   ) {
-    return this.http.get<Personne[]>(
-      'http://localhost:3000/personnes?nom=' +
-        nom +
-        '&prenom=' +
-        prenom +
-        '&dateNaissance=' +
-        dateNaissance +
-        '&cin=' +
-        cin
-    );
+    if (type == 'naissance') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?nom=' +
+          nom +
+          '&prenom=' +
+          prenom +
+          '&dateNaissance=' +
+          dateNaissance
+      );
+    } else if (type == 'deces') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?nom=' +
+          nom +
+          '&prenom=' +
+          prenom +
+          '&cin=' +
+          cin
+      );
+    }
   }
 }

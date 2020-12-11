@@ -134,7 +134,6 @@
     <script src="assets/back/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="assets/back/plugins/chart.js/Chart.min.js"></script>
-
     <!-- PAGE SCRIPTS -->
     <script src="assets/back/js/pages/dashboard2.js"></script>
 
@@ -151,7 +150,7 @@
         //Datemask dd/mm/yyyy
         $("#datemask").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
         //Datemask2 mm/dd/yyyy
-        $("#datemask2").inputmask("mm/dd/yyyy", { placeholder: "mm/dd/yyyy" });
+        $("#datemask2").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
         //Money Euro
         $("[data-mask]").inputmask();
 
@@ -162,7 +161,7 @@
           timePicker: true,
           timePickerIncrement: 30,
           locale: {
-            format: "MM/DD/YYYY hh:mm A",
+            format: "DD/MM/YYYY hh:mm A",
           },
         });
         //Date range as a button
@@ -190,7 +189,7 @@
           },
           function (start, end) {
             $("#reportrange span").html(
-              start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
+              start.format("DD M, YYYY") + " - " + end.format("DD M, YYYY")
             );
           }
         );

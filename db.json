@@ -1,10 +1,10 @@
 {
   "personnes": [
     {
-      "nom": "Amri",
-      "prenom": "Najiba",
+      "nom": "amri",
+      "prenom": "najiba",
       "sexe": "feminin",
-      "dateNaissance": "19/04/1998",
+      "dateNaissance": "1998-04-19",
       "lieuNaissance": "Le Kef",
       "nationalite": "tunisienne",
       "nomPere": "Amri Adel",
@@ -14,10 +14,11 @@
       "id": 1,
       "email": "najiba.amri@esprit.tn",
       "password": "najiba",
-      "username": "najiba"
+      "username": "najiba",
+      "cin":13638097
     },
     {
-      "nom": "Amri",
+      "nom": "amri",
       "prenom": "moemen",
       "sexe": "masculin",
       "dateNaissance": "2020-12-16",

@@ -19,6 +19,9 @@ import { LoginComponent } from './client/login/login.component';
 import { InterceptorService } from './services/interceptor';
 import { OnlineServicesComponent } from './client/online-services/online-services.component';
 import { SearchDataComponent } from './client/search-data/search-data.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,11 @@ import { SearchDataComponent } from './client/search-data/search-data.component'
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NgxStripeModule.forRoot(
+      'pk_test_51HwuC5DPe9yprXGcNSeGHeJo2Me2z0gbSyESDNI0Uadx4F8iUIg2T3BxSvbMY3gYYsf5xB6fMIkEG3190wQJUDjq00cdUCPwuq'
+    ),
+    SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -31,15 +31,23 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for=""> Nom</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="nom"
-                data-rule="minlen:4"
-                data-msg="Please enter at least 4 chars"
-              />
-              <div class="validate"></div>
+              <input type="text" class="form-control" formControlName="nom" />
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  SearchForm.get('nom').errors &&
+                  SearchForm.controls['nom'].touched
+                "
+              >
+                <div *ngIf="SearchForm.get('nom').hasError('required')">
+                  Le nom est obligatoire
+                </div>
+                <div *ngIf="SearchForm.controls['nom'].hasError('pattern')">
+                  Le nom doit contenir des lettres seulement
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-md-6">
               <label for=""> Prénom</label>
               <input
@@ -48,30 +56,68 @@
                 formControlName="prenom"
                 data-msg="Please enter a valid email"
               />
-              <div class="validate"></div>
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  SearchForm.get('prenom').errors &&
+                  SearchForm.controls['prenom'].touched
+                "
+              >
+                <div *ngIf="SearchForm.get('prenom').hasError('required')">
+                  Le prénom est obligatoire
+                </div>
+                <div *ngIf="SearchForm.controls['prenom'].hasError('pattern')">
+                  Le prénom doit contenir des lettres seulement
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group" *ngIf="type == 'naissance'">
             <label for=""> Date de naissance</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
-              data-rule="minlen:4"
+              data-date-format="DD/MM/YYYY"
               formControlName="dateNaissance"
-              data-msg="Please enter at least 8 chars of subject"
             />
-            <div class="validate"></div>
+
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                SearchForm.get('dateNaissance').errors &&
+                SearchForm.controls['dateNaissance'].touched
+              "
+            >
+              <div *ngIf="SearchForm.get('dateNaissance').hasError('required')">
+                La date de naissance est obligatoire
+              </div>
+            </div>
           </div>
           <div class="form-group" *ngIf="type == 'deces'">
             <label for=""> Numéro cin</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
-              data-rule="minlen:4"
               formControlName="cin"
-              data-msg="Please enter at least 8 chars of subject"
+              maxlength="8"
             />
-            <div class="validate"></div>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                SearchForm.get('cin').errors &&
+                SearchForm.controls['cin'].touched
+              "
+            >
+              <div *ngIf="SearchForm.get('cin').hasError('required')">
+                Le numéro de Cin est obligatoire
+              </div>
+              <div *ngIf="SearchForm.controls['cin'].hasError('minlength')">
+                Le numéro de Cin doit contenir exactement 8 chiffres
+              </div>
+              <div *ngIf="SearchForm.controls['cin'].hasError('pattern')">
+                Le numéro de Cin doit contenir des chiffres seulement
+              </div>
+            </div>
           </div>
 
           <div class="mb-3">
@@ -82,14 +128,44 @@
             </div>
           </div>
           <div class="text-center">
-            <button (click)="HtmlPDF()" type="submit">Envoyer</button>
+            <button
+              (click)="HtmlPDF()"
+              [disabled]="searchButton == false"
+              type="submit"
+            >
+              Envoyer
+            </button>
           </div>
+          <br />
+          <form
+            novalidate
+            (ngSubmit)="createToken()"
+            [formGroup]="stripeTest"
+            [hidden]="visible == true"
+          >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="username"
+            /><br />
+            <ngx-stripe-card
+              class="form-control"
+              [options]="cardOptions"
+              [elementsOptions]="elementsOptions"
+            ></ngx-stripe-card>
+            <br />
+            <div class="text-center">
+              <button type="submit">Payer</button>
+            </div>
+          </form>
         </form>
       </div>
     </div>
   </div>
 </section>
-<div id="naissance">
+
+<div id="naissance" style="font-size: 12px" [hidden]="hey == true">
   <table>
     <tr>
       <td style="width: 30%">
@@ -114,7 +190,14 @@
       </td>
       <td align="right">
         <h3>C / 2041605</h3>
-        <p style="border-style: solid; border-radius: 20px">
+        <p
+          style="
+            border-style: solid;
+            border-radius: 20px;
+            text-align: center;
+            padding: 10px;
+          "
+        >
           Année: 1998<br />
           Acte N°: 677<br />
           -Déclaration:<br />
@@ -249,3 +332,4 @@
     </tr>
   </table>
 </div>
+<simple-notifications></simple-notifications>
