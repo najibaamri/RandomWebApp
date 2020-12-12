@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdatePersonneComponent } from './update-personne/update-personne.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     AppRoutingModule,
     NgxPaginationModule,
+    AdminRoutingModule,
   ],
 })
 export class AdminModule {}

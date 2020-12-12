@@ -5,17 +5,17 @@
       "prenom": "najiba",
       "sexe": "feminin",
       "dateNaissance": "1998-04-19",
-      "lieuNaissance": "Le Kef",
+      "lieuNaissance": "tunis",
       "nationalite": "tunisienne",
       "nomPere": "Amri Adel",
       "natioPere": "tunisienne",
       "nomMere": "Tebessi Neila",
       "natioMere": "tunisienne",
       "id": 1,
-      "email": "najiba.amri@esprit.tn",
-      "password": "najiba",
-      "username": "najiba",
-      "cin":13638097
+      "password":"najiba",
+      "username":"najiba",
+      "role": "admin",
+      "email":"najiba.amri@esprit.tn"
     },
     {
       "nom": "amri",

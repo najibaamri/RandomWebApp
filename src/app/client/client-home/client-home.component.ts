@@ -8,9 +8,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./client-home.component.css'],
 })
 export class ClientHomeComponent implements OnInit {
+  role: string;
   constructor(public authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+  }
 
   // Logout Function
   logout() {

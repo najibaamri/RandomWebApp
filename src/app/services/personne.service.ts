@@ -42,7 +42,7 @@ export class PersonneService {
     nom: string,
     prenom: string,
     dateNaissance: string,
-    cin: number,
+    dateDeces: string,
     type: string
   ) {
     if (type == 'naissance') {
@@ -60,8 +60,8 @@ export class PersonneService {
           nom +
           '&prenom=' +
           prenom +
-          '&cin=' +
-          cin
+          '&dateDeces=' +
+          dateDeces
       );
     }
   }

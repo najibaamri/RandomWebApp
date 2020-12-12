@@ -13,5 +13,8 @@ export class Personne {
   email: string;
   password: string;
   username: string;
-  cin: number;
+  dateDeces: string;
+  lieuDeces: string;
+  sitFamiliale: string;
+  role: string;
 }

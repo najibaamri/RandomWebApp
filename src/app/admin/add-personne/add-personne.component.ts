@@ -23,7 +23,7 @@ export class AddPersonneComponent implements OnInit {
     this.servicePersonne.postUser(this.personne).subscribe(
       () => {
         setTimeout(() => {
-          this.router.navigate(['personnes']);
+          this.router.navigate(['admin/personnes']);
         }, 1000);
         this.alert = true;
       },

@@ -57,7 +57,7 @@ export class UpdatePersonneComponent implements OnInit {
       (result) => {
         console.log(result, 'user updated with success');
         setTimeout(() => {
-          this.router.navigate(['personnes']);
+          this.router.navigate(['admin/personnes']);
         }, 1000);
         this.alert = true;
       },

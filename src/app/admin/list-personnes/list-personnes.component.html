@@ -27,20 +27,25 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover">
+            <table
+              id="example2"
+              class="table table-bordered table-hover"
+              style="font-size: 13px"
+            >
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Nom</th>
                   <th>Prénom</th>
                   <th>Sexe</th>
-                  <th>Nationalité</th>
                   <th>Date de naissance</th>
                   <th>Lieu de naissance</th>
                   <th>Nom du père</th>
                   <th>Nationalité du père</th>
                   <th>Nom de la mère</th>
                   <th>Nationalité de la mère</th>
+                  <th>Situation familiale</th>
+                  <th>Date de décès</th>
+                  <th>Lieu de décès</th>
                   <th colspan="2" style="text-align: center">Action</th>
                 </tr>
               </thead>
@@ -51,23 +56,25 @@
                       | paginate
                         : {
                             id: 'listing_pagination',
-                            itemsPerPage: 2,
+                            itemsPerPage: 4,
                             currentPage: page,
                             totalItems: totalRecords
                           }
                   "
                 >
-                  <td>{{ person.id }}</td>
                   <td>{{ person.nom }}</td>
                   <td>{{ person.prenom }}</td>
                   <td>{{ person.sexe }}</td>
-                  <td>{{ person.nationalite }}</td>
-                  <td>{{ person.dateNaissance }}</td>
+                  <td>{{ person.dateNaissance | date: "fullDate" }}</td>
                   <td>{{ person.lieuNaissance }}</td>
                   <td>{{ person.nomPere }}</td>
                   <td>{{ person.natioPere }}</td>
                   <td>{{ person.nomMere }}</td>
                   <td>{{ person.natioMere }}</td>
+                  <td>{{ person.sitFamiliale }}</td>
+                  <td>{{ person.dateDeces }}</td>
+                  <td>{{ person.lieuDeces }}</td>
+
                   <td>
                     <button class="btn btn-danger" (click)="delete(person.id)">
                       <i class="far fa-trash-alt"></i>

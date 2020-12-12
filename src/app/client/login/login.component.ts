@@ -52,16 +52,18 @@ export class LoginComponent implements OnInit {
             val['password'] == this.password
           ) {
             this.authService.login(this.loginForm.value);
-            localStorage.setItem('username', this.username);
-            this.router.navigateByUrl('/accueilClient');
-            /* if (val['userRole'] == 'Admin') {
+            // localStorage.setItem('username', this.username);
+            //this.router.navigateByUrl('/accueilClient');
+            if (val['role'] == 'admin') {
               localStorage.setItem('username', this.username);
-              this.router.navigateByUrl('/admin');
+              localStorage.setItem('role', 'admin');
+              this.router.navigateByUrl('/admin/dashboard');
             }
-            if (val['userRole'] == 'Candidate') {
+            if (val['role'] == 'client') {
               localStorage.setItem('username', this.username);
-              this.router.navigateByUrl('/candidate');
-            }*/
+              localStorage.setItem('role', 'client');
+              this.router.navigateByUrl('/homeClient/accueilClient').finally;
+            }
           } else {
             this.msg = 'Invalid Credentials';
           }

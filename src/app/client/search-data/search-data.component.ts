@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PersonneService } from 'src/app/services/personne.service';
+import { PersonneService } from '../../services/personne.service';
 import * as html2pdf from 'html2pdf.js';
 import { Personne } from 'src/app/model/personne';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,13 +25,16 @@ export class SearchDataComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
   type: string;
   SearchForm: FormGroup;
-  listPersons: Personne[];
+  listPersonsN: Personne[];
+  listPersonsD: Personne[];
+
   isLoggedIn: boolean;
   username: string;
   CurrentDate = Date.now();
   hey: boolean;
   visible: boolean;
   searchButton: boolean;
+  datedeces: string;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -83,9 +86,7 @@ export class SearchDataComponent implements OnInit {
   ngOnInit(): void {
     this.searchButton = true;
     this.visible = true;
-    this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]],
-    });
+    this.stripeTest = this.fb.group({});
     this.hey = true;
     this.isLoggedIn = this.serviceAuth.isLoggedIn;
     this.type = this.service.snapshot.params.type;
@@ -100,34 +101,49 @@ export class SearchDataComponent implements OnInit {
         Validators.pattern('[a-zA-Z]+$'),
       ]),
       dateNaissance: new FormControl('', [Validators.required]),
-      cin: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern('[0-9]+$'),
-      ]),
+      dateDeces: new FormControl('', [Validators.required]),
     });
   }
   HtmlPDF() {
+    let nom: string = this.SearchForm.get('nom').value;
+    let prenom: string = this.SearchForm.get('prenom').value;
+    this.datedeces = this.SearchForm.get('dateDeces').value;
     this.servicePerson
       .searchPerson(
-        this.SearchForm.get('nom').value,
-        this.SearchForm.get('prenom').value,
+        nom.toLowerCase(),
+        prenom.toLowerCase(),
         this.SearchForm.get('dateNaissance').value,
-        this.SearchForm.get('cin').value,
+        this.datedeces,
         this.type
       )
       .subscribe(
         (data: Personne[]) => {
-          this.listPersons = data;
-          if (this.listPersons != undefined && this.listPersons.length) {
-            this.visible = false;
-            console.log('succes');
-            this.onSucces(
-              'Nous avons trouvez vos informations, passez au paiement pour télécharger votre document'
-            );
-            this.SearchForm.disable();
-            this.searchButton = false;
-          } else this.onError('Les informations sont invalides');
+          if (this.type == 'naissance') {
+            this.listPersonsN = data;
+            if (this.listPersonsN != undefined && this.listPersonsN.length) {
+              this.visible = false;
+
+              console.log('succes');
+              this.onSucces(
+                'Nous avons trouvez vos informations, passez au paiement pour télécharger votre document'
+              );
+              this.SearchForm.disable();
+              this.searchButton = false;
+            } else this.onError('Les informations sont invalides');
+          }
+
+          if (this.type == 'deces') {
+            this.listPersonsD = data;
+            if (this.listPersonsD != undefined && this.listPersonsD.length) {
+              this.visible = false;
+              console.log('succes');
+              this.onSucces(
+                'Nous avons trouvez vos informations, passez au paiement pour télécharger votre document'
+              );
+              this.SearchForm.disable();
+              this.searchButton = false;
+            } else this.onError('Les informations sont invalides');
+          }
         },
         (error) => {
           alert(error);
@@ -136,14 +152,14 @@ export class SearchDataComponent implements OnInit {
   }
 
   createToken(): void {
-    const name = this.stripeTest.get('name').value;
+    const name: string = localStorage.getItem('username');
     this.stripeService
       .createToken(this.card.element, { name })
       .subscribe((result) => {
         if (result.token) {
           // Use the token
           console.log(result.token.id);
-          this.username = localStorage.getItem('username');
+          this.username = localStorage.getItem('username').toUpperCase();
           if (this.type == 'naissance') {
             const options = {
               margin: 1,
