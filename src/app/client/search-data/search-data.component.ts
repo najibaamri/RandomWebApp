@@ -30,12 +30,11 @@ export class SearchDataComponent implements OnInit {
 
   isLoggedIn: boolean;
   username: string;
-  CurrentDate = Date.now();
+  CurrentDate = new Date();
   hey: boolean;
   visible: boolean;
   searchButton: boolean;
   datedeces: string;
-
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -69,9 +68,8 @@ export class SearchDataComponent implements OnInit {
   onSucces(message) {
     this.notService.success('Succés', message, {
       position: ['button', 'right'],
-      timeout: 500,
+      timeout: 1,
       animate: 'fade',
-      showProgressBar: true,
     });
   }
   onError(message) {
@@ -84,6 +82,7 @@ export class SearchDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.CurrentDate);
     this.searchButton = true;
     this.visible = true;
     this.stripeTest = this.fb.group({});
@@ -137,9 +136,12 @@ export class SearchDataComponent implements OnInit {
             if (this.listPersonsD != undefined && this.listPersonsD.length) {
               this.visible = false;
               console.log('succes');
-              this.onSucces(
-                'Nous avons trouvez vos informations, passez au paiement pour télécharger votre document'
-              );
+
+              setTimeout(() => {
+                this.onSucces(
+                  'Nous avons trouvez vos informations, passez au paiement pour télécharger votre document'
+                );
+              }, 500);
               this.SearchForm.disable();
               this.searchButton = false;
             } else this.onError('Les informations sont invalides');
@@ -161,6 +163,9 @@ export class SearchDataComponent implements OnInit {
           console.log(result.token.id);
           this.username = localStorage.getItem('username').toUpperCase();
           if (this.type == 'naissance') {
+            this.onSucces(
+              'Votre acte de naissance est en cours de préparation, veuillez patienter'
+            );
             const options = {
               margin: 1,
               filename:
@@ -184,6 +189,9 @@ export class SearchDataComponent implements OnInit {
             this.stripeTest.reset();
           }
           if (this.type == 'deces') {
+            this.onSucces(
+              'Votre acte de décès est en cours de préparation, veuillez patienter'
+            );
             const options = {
               margin: 1,
               filename:

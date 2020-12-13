@@ -12,7 +12,7 @@ const ROUTES: Routes = [
     component: NavBarComponent,
     children: [
       { path: 'dashboard', component: AdminHomeComponent },
-
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'personnes', component: ListPersonnesComponent },
       { path: 'addPersonne', component: AddPersonneComponent },
       {

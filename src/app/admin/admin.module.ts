@@ -9,6 +9,7 @@ import { UpdatePersonneComponent } from './update-personne/update-personne.compo
 import { AppRoutingModule } from '../app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminRoutingModule } from './admin-routing.module';
+import { NbrPersonnesComponent } from './nbr-personnes/nbr-personnes.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     ListPersonnesComponent,
     AddPersonneComponent,
     UpdatePersonneComponent,
+    NbrPersonnesComponent,
   ],
   imports: [
     CommonModule,

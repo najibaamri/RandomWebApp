@@ -188,7 +188,7 @@
             padding: 10px;
           "
         >
-          Année: 1998<br />
+          Année: <br />
           Acte N°: 677<br />
           -Déclaration:<br />
           -ou jugement:<br />
@@ -219,7 +219,7 @@
         <th class="row-header">
           Date de naissance <br />Jour, mois et année <br />(en toutes lettres)
         </th>
-        <td>{{ person.dateNaissance | date: "fullDate" }} *</td>
+        <td>{{ person.dateNaissance | date: "fullDate" | uppercase }} *</td>
       </tr>
       <tr>
         <th class="row-header">Lieu de naissance</th>
@@ -271,7 +271,7 @@
         <th class="row-header">
           Date de la déclaration<br />(jour, mois, année, heure)
         </th>
-        <td>{{ CurrentDate.toString() }} *</td>
+        <td>{{ CurrentDate | date: "full" | uppercase }} *</td>
       </tr>
 
       <tr>
@@ -388,7 +388,7 @@
         <th class="row-header">
           Date de décès <br />Jour, mois et année <br />(en toutes lettres)
         </th>
-        <td>{{ datedeces | date: "fullDate" }} *</td>
+        <td>{{ datedeces | date: "fullDate" | uppercase }} *</td>
       </tr>
       <tr>
         <th class="row-header">Lieu de décès</th>
@@ -444,7 +444,7 @@
         <th class="row-header">
           Date de la déclaration du décès<br />(jour, mois, année, heure)
         </th>
-        <td>{{ CurrentDate.toString() }} *</td>
+        <td>{{ CurrentDate | date: "full" | uppercase }} *</td>
       </tr>
 
       <tr>

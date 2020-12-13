@@ -65,4 +65,60 @@ export class PersonneService {
       );
     }
   }
+
+  Recherche(type: string, value: string) {
+    if (type == 'Tout') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?q=' + value
+      );
+    } else if (type == 'Nom') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?nom_like=' + value
+      );
+    } else if (type == 'Prénom') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?prenom_like=' + value
+      );
+    } else if (type == 'Sexe') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?sexe_like=' + value
+      );
+    } else if (type == 'Date de naissance') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?dateNaissance_like=' + value
+      );
+    } else if (type == 'Lieu de naissance') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?lieuNaissance_like=' + value
+      );
+    } else if (type == 'Nom du père') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?nomPere_like=' + value
+      );
+    } else if (type == 'Nationalité du père') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?natioPere_like=' + value
+      );
+    } else if (type == 'Nom de la mère') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?nomMere_like=' + value
+      );
+    } else if (type == 'Nationalité de la mère') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?natioMere_like=' + value
+      );
+    } else if (type == 'Situation familiale') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?sitFamiliale_like=' + value
+      );
+    } else if (type == 'Date de décès') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?dateDeces_like=' + value
+      );
+    } else if (type == 'Lieu de décès') {
+      return this.http.get<Personne[]>(
+        'http://localhost:3000/personnes?lieuDeces_like=' + value
+      );
+    }
+  }
 }

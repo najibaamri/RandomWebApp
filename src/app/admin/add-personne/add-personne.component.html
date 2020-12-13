@@ -30,11 +30,11 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Entrer Les Informations Du Personne</h3>
+              <h3 class="card-title">Entrer Les Informations De La Personne</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form>
+            <form #f="ngForm">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
@@ -46,7 +46,21 @@
                         name="nom"
                         placeholder="Entrer le nom"
                         [(ngModel)]="personne.nom"
+                        required
+                        #n="ngModel"
+                        pattern="[a-zA-Z]+$"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="n.invalid && n.touched"
+                      >
+                        <div *ngIf="n.errors.required">
+                          Le nom est obligatoire.
+                        </div>
+                        <div *ngIf="n.errors.pattern">
+                          Le nom doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Prénom</label>
@@ -56,58 +70,36 @@
                         name="prenom"
                         placeholder="Entrer le prénom"
                         [(ngModel)]="personne.prenom"
+                        required
+                        #p="ngModel"
+                        pattern="[a-zA-Z]+$"
                       />
-                    </div>
-                    <div class="form-group">
-                      <label>Date de naissance</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        name="dateNaissance"
-                        placeholder="Entrer la date de naissance"
-                        [(ngModel)]="personne.dateNaissance"
-                      />
-                    </div>
-
-                    <div class="form-group">
-                      <label>Lieu de naissance</label>
-                      <select
-                        class="form-control"
-                        name="lieuNaissance"
-                        [(ngModel)]="personne.lieuNaissance"
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="p.invalid && p.touched"
                       >
-                        <option value="tunis">tunis</option>
-                        <option value="kef">Kef</option>
-                        <option value="sousse">Sousse</option>
-                      </select>
+                        <div *ngIf="p.errors.required">
+                          Le prénom est obligatoire.
+                        </div>
+                        <div *ngIf="p.errors.pattern">
+                          Le prénom doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label>Nationalite</label>
-                      <select
-                        class="form-control"
-                        name="nationalite"
-                        [(ngModel)]="personne.nationalite"
-                      >
-                        <option value="tunisienne">Tunisienne</option>
-                        <option value="française">Française</option>
-                        <option value="japonaise">Japonaise</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
                     <label>Sexe</label><br />
                     <div class="form-group clearfix">
                       <div class="icheck-success d-inline">
                         <input
+                          checked
                           type="radio"
                           value="masculin"
                           name="sexe"
                           [(ngModel)]="personne.sexe"
-                          checked
                           id="radioSuccess1"
+                          required
+                          #s="ngModel"
                         />
-                        <label for="radioSuccess1">Masculin </label>
+                        <label for="radioSuccess1">Masculin </label>&nbsp;&nbsp;
                       </div>
                       <div class="icheck-success d-inline">
                         <input
@@ -117,10 +109,113 @@
                           [(ngModel)]="personne.sexe"
                           checked
                           id="radioSuccess2"
+                          required
+                          #s="ngModel"
                         />
-                        <label for="radioSuccess2">Feminin</label>
+                        <label for="radioSuccess2">Féminin</label>
+                      </div>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="s.invalid && s.touched"
+                      >
+                        <div *ngIf="s.errors.required">
+                          Le sexe est obligatoire.
+                        </div>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label>Date de naissance</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="dateNaissance"
+                        placeholder="Entrer la date de naissance"
+                        [(ngModel)]="personne.dateNaissance"
+                        required
+                        #Dn="ngModel"
+                      />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="Dn.invalid && Dn.touched"
+                      >
+                        <div *ngIf="Dn.errors.required">
+                          La date de naissance est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Lieu de naissance</label>
+                      <select
+                        class="form-control"
+                        name="lieuNaissance"
+                        [(ngModel)]="personne.lieuNaissance"
+                        required
+                        #Ln="ngModel"
+                      >
+                        <option value="tunis">tunis</option>
+                        <option value="kef">Kef</option>
+                        <option value="sousse">Sousse</option>
+                      </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="Ln.invalid && Ln.touched"
+                      >
+                        <div *ngIf="Ln.errors.required">
+                          Le Lieu de naissance est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                    <label>Situation Familiale</label><br /><br />
+                    <div class="form-group clearfix">
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="célibataire"
+                          name="sitFamiliale"
+                          [(ngModel)]="personne.sitFamiliale"
+                          checked
+                          id="wisteria1"
+                          #SF="ngModel"
+                        />
+                        <label for="wisteria1">célibataire</label>&nbsp;&nbsp;
+                      </div>
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="Marié"
+                          name="sitFamiliale"
+                          [(ngModel)]="personne.sitFamiliale"
+                          checked
+                          id="wisteria2"
+                          #SF="ngModel"
+                        />
+                        <label for="wisteria2">Marié(e) </label>&nbsp;&nbsp;
+                      </div>
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="Divorcé"
+                          name="sitFamiliale"
+                          [(ngModel)]="personne.sitFamiliale"
+                          checked
+                          id="wisteria3"
+                          #SF="ngModel"
+                        />
+                        <label for="wisteria3">Divorcé(e)</label>&nbsp;&nbsp;
+                      </div>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="SF.invalid && SF.touched"
+                      >
+                        <div *ngIf="SF.errors.required">
+                          La situation familiale est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label>Nom du père</label>
                       <input
@@ -129,7 +224,21 @@
                         name="nomPere"
                         placeholder="Entrer le nom du père"
                         [(ngModel)]="personne.nomPere"
+                        required
+                        #pe="ngModel"
+                        pattern="[a-zA-Z]+$"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="pe.invalid && pe.touched"
+                      >
+                        <div *ngIf="pe.errors.required">
+                          Le nom du père est obligatoire.
+                        </div>
+                        <div *ngIf="pe.errors.pattern">
+                          Le nom du père doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nationalité du père</label>
@@ -138,11 +247,21 @@
                         name="natioPere"
                         placeholder="Entrer la nationalité du père"
                         [(ngModel)]="personne.natioPere"
+                        required
+                        #Np="ngModel"
                       >
                         <option value="tunisienne">Tunisienne</option>
                         <option value="française">Française</option>
                         <option value="japonaise">Japonaise</option>
                       </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="Np.invalid && Np.touched"
+                      >
+                        <div *ngIf="Np.errors.required">
+                          La nationalité du père est obligatoire.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nom de la mère</label>
@@ -152,7 +271,21 @@
                         name="nomMere"
                         placeholder="Entrer le nom de la mère"
                         [(ngModel)]="personne.nomMere"
+                        required
+                        #m="ngModel"
+                        pattern="[a-zA-Z]+$"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="m.invalid && m.touched"
+                      >
+                        <div *ngIf="m.errors.required">
+                          Le nom de la mère est obligatoire.
+                        </div>
+                        <div *ngIf="m.errors.pattern">
+                          Le nom de la mère doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nationalité de la mère</label>
@@ -161,10 +294,43 @@
                         name="natioMere"
                         placeholder="Entrer la nationalité de la mère"
                         [(ngModel)]="personne.natioMere"
+                        required
+                        #Nm="ngModel"
                       >
                         <option value="tunisienne">Tunisienne</option>
                         <option value="française">Française</option>
                         <option value="japonaise">Japonaise</option>
+                      </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="Nm.invalid && Nm.touched"
+                      >
+                        <div *ngIf="Nm.errors.required">
+                          La nationalité de la mère est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Date de décès</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="dateDeces"
+                        placeholder="Entrer la date de naissance"
+                        [(ngModel)]="personne.dateDeces"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Lieu de Décès</label>
+                      <select
+                        class="form-control"
+                        name="lieuDeces"
+                        [(ngModel)]="personne.lieuDeces"
+                      >
+                        <option value="tunis">tunis</option>
+                        <option value="kef">Kef</option>
+                        <option value="sousse">Sousse</option>
                       </select>
                     </div>
                   </div>
@@ -176,7 +342,9 @@
               <div class="card-footer">
                 <button
                   type="submit"
+                  style="float: right; margin-right: 30px"
                   class="btn btn-primary"
+                  [disabled]="f.invalid"
                   (click)="addPerson()"
                 >
                   Ajouter

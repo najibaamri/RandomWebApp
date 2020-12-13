@@ -12,10 +12,10 @@
       "nomMere": "Tebessi Neila",
       "natioMere": "tunisienne",
       "id": 1,
-      "password":"najiba",
-      "username":"najiba",
+      "password": "najiba",
+      "username": "najiba",
       "role": "admin",
-      "email":"najiba.amri@esprit.tn"
+      "email": "najiba.amri@esprit.tn"
     },
     {
       "nom": "amri",
@@ -68,6 +68,21 @@
       "nomMere": "Adel Amri",
       "natioMere": "française",
       "id": 7
+    },
+    {
+      "nom": "boudeli",
+      "prenom": "najiba",
+      "sexe": "feminin",
+      "dateNaissance": "1950-02-05",
+      "lieuNaissance": "kef",
+      "nomPere": "boudeli moncef",
+      "natioPere": "tunisienne",
+      "nomMere": "boudeli basma",
+      "natioMere": "tunisienne",
+      "sitFamiliale": "Divorcé",
+      "dateDeces": "1997-06-06",
+      "lieuDeces": "kef",
+      "id": 9
     }
   ]
 }

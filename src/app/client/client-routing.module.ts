@@ -14,6 +14,7 @@ const ROUTES: Routes = [
     component: ClientHomeComponent,
     children: [
       { path: 'accueilClient', component: AccueilClientComponent },
+      { path: '', redirectTo: 'accueilClient', pathMatch: 'full' },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'login', component: LoginComponent },

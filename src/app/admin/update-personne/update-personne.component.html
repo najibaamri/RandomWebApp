@@ -42,6 +42,22 @@
                         placeholder="Entrer le nom"
                         formControlName="nom"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('nom').errors &&
+                          editForm.controls['nom'].touched
+                        "
+                      >
+                        <div *ngIf="editForm.get('nom').hasError('required')">
+                          Le nom est obligatoire.
+                        </div>
+                        <div
+                          *ngIf="editForm.controls['nom'].hasError('pattern')"
+                        >
+                          Le nom doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Prénom</label>
@@ -51,44 +67,27 @@
                         placeholder="Entrer le prénom"
                         formControlName="prenom"
                       />
-                    </div>
-                    <div class="form-group">
-                      <label>Date de naissance</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        placeholder="Entrer la date de naissance"
-                        formControlName="dateNaissance"
-                      />
-                    </div>
-
-                    <div class="form-group">
-                      <label>Lieu de naissance</label>
-                      <select
-                        class="form-control"
-                        formControlName="lieuNaissance"
-                        [(ngModel)]="lieuNaissance"
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('prenom').errors &&
+                          editForm.controls['prenom'].touched
+                        "
                       >
-                        <option value="tunis">tunis</option>
-                        <option value="kef">Kef</option>
-                        <option value="sousse">Sousse</option>
-                      </select>
+                        <div
+                          *ngIf="editForm.get('prenom').hasError('required')"
+                        >
+                          Le prénom est obligatoire.
+                        </div>
+                        <div
+                          *ngIf="
+                            editForm.controls['prenom'].hasError('pattern')
+                          "
+                        >
+                          Le prénom doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label>Nationalite</label>
-                      <select
-                        class="form-control"
-                        formControlName="nationalite"
-                        [(ngModel)]="nationalite"
-                      >
-                        <option value="tunisienne">Tunisienne</option>
-                        <option value="française">Française</option>
-                        <option value="japonaise">Japonaise</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
                     <label>Sexe</label><br />
                     <div class="form-group clearfix">
                       <div class="icheck-success d-inline">
@@ -112,8 +111,127 @@
                           id="radioSuccess2"
                         />
                         <label for="radioSuccess2">Feminin</label>
+                        <div
+                          class="alert alert-danger"
+                          *ngIf="
+                            editForm.get('sexe').errors &&
+                            editForm.controls['sexe'].touched
+                          "
+                        >
+                          <div
+                            *ngIf="editForm.get('sexe').hasError('required')"
+                          >
+                            Le sexe est obligatoire.
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label>Date de naissance</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Entrer la date de naissance"
+                        formControlName="dateNaissance"
+                      />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('dateNaissance').errors &&
+                          editForm.controls['dateNaissance'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="
+                            editForm.get('dateNaissance').hasError('required')
+                          "
+                        >
+                          La date de naissance est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Lieu de naissance</label>
+                      <select
+                        class="form-control"
+                        formControlName="lieuNaissance"
+                        [(ngModel)]="lieuNaissance"
+                      >
+                        <option value="tunis">tunis</option>
+                        <option value="kef">Kef</option>
+                        <option value="sousse">Sousse</option>
+                      </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('lieuNaissance').errors &&
+                          editForm.controls['lieuNaissance'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="
+                            editForm.get('lieuNaissance').hasError('required')
+                          "
+                        >
+                          Le lieu de naissance est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                    <label>Situation Familiale</label><br /><br />
+                    <div class="form-group clearfix">
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="célibataire"
+                          formControlName="sitFamiliale"
+                          [(ngModel)]="sitFamiliale"
+                          checked
+                          id="wisteria1"
+                        />
+                        <label for="wisteria1">célibataire</label>&nbsp;&nbsp;
+                      </div>
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="Marié"
+                          formControlName="sitFamiliale"
+                          [(ngModel)]="sitFamiliale"
+                          checked
+                          id="wisteria2"
+                        />
+                        <label for="wisteria2">Marié(e) </label>&nbsp;&nbsp;
+                      </div>
+                      <div class="icheck-wisteria d-inline">
+                        <input
+                          type="radio"
+                          value="Divorcé"
+                          formControlName="sitFamiliale"
+                          [(ngModel)]="sitFamiliale"
+                          checked
+                          id="wisteria3"
+                        />
+                        <label for="wisteria3">Divorcé(e)</label>&nbsp;&nbsp;
+                      </div>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('sitFamiliale').errors &&
+                          editForm.controls['sitFamiliale'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="
+                            editForm.get('sitFamiliale').hasError('required')
+                          "
+                        >
+                          La situation familiale est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label>Nom du père</label>
                       <input
@@ -122,6 +240,26 @@
                         formControlName="nomPere"
                         placeholder="Entrer le nom du père"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('nomPere').errors &&
+                          editForm.controls['nomPere'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="editForm.get('nomPere').hasError('required')"
+                        >
+                          Le nom du père est obligatoire.
+                        </div>
+                        <div
+                          *ngIf="
+                            editForm.controls['nomPere'].hasError('pattern')
+                          "
+                        >
+                          Le nom du père doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nationalité du père</label>
@@ -135,6 +273,19 @@
                         <option value="française">Française</option>
                         <option value="japonaise">Japonaise</option>
                       </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('natioPere').errors &&
+                          editForm.controls['natioPere'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="editForm.get('natioPere').hasError('required')"
+                        >
+                          La nationalité du père est obligatoire.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nom de la mère</label>
@@ -144,6 +295,26 @@
                         formControlName="nomMere"
                         placeholder="Entrer le nom de la mère"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('nomMere').errors &&
+                          editForm.controls['nomMere'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="editForm.get('nomMere').hasError('required')"
+                        >
+                          Le nom de la mère est obligatoire.
+                        </div>
+                        <div
+                          *ngIf="
+                            editForm.controls['nomMere'].hasError('pattern')
+                          "
+                        >
+                          Le nom de la mère doit contenir des lettres seulement.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label>Nationalité de la mère</label>
@@ -156,6 +327,41 @@
                         <option value="tunisienne">Tunisienne</option>
                         <option value="française">Française</option>
                         <option value="japonaise">Japonaise</option>
+                      </select>
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          editForm.get('natioMere').errors &&
+                          editForm.controls['natioMere'].touched
+                        "
+                      >
+                        <div
+                          *ngIf="editForm.get('natioMere').hasError('required')"
+                        >
+                          La nationalité de la mère est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Date de Décès</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Entrer la date de décès"
+                        formControlName="dateDeces"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Lieu de Décès</label>
+                      <select
+                        class="form-control"
+                        formControlName="lieuDeces"
+                        [(ngModel)]="lieuDeces"
+                      >
+                        <option value="tunis">tunis</option>
+                        <option value="kef">Kef</option>
+                        <option value="sousse">Sousse</option>
                       </select>
                     </div>
                   </div>
@@ -172,7 +378,13 @@
                 Personne Modifiée avec Succées !
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-danger" (click)="update()">
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  style="float: right; margin-right: 30px"
+                  (click)="update()"
+                  [disabled]="editForm.invalid"
+                >
                   Modifier
                 </button>
               </div>

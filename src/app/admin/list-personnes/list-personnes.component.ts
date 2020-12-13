@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
+import { Component, Input, OnInit } from '@angular/core';
+import { callbackify } from 'util';
 import { Personne } from '../../model/personne';
 import { PersonneService } from '../../services/personne.service';
 
@@ -12,6 +14,10 @@ export class ListPersonnesComponent implements OnInit {
   personne: Personne;
   totalRecords: number;
   page: number = 1;
+  type: string;
+  value: string;
+  inputType: string;
+  nbPersonnes: number;
   constructor(private servicePersonne: PersonneService) {}
 
   ngOnInit(): void {
@@ -37,5 +43,29 @@ export class ListPersonnesComponent implements OnInit {
         alert(error);
       }
     );
+  }
+
+  rechercher() {
+    this.servicePersonne.Recherche(this.type, this.value).subscribe(
+      (data: Personne[]) => {
+        this.listPersonnes = data;
+        this.totalRecords = this.listPersonnes.length;
+        this.nbPersonnes = this.listPersonnes.length;
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    this.personne = new Personne();
+  }
+
+  guessInput() {
+    if (this.type == 'Date de naissance' || this.type == 'Date de décès')
+      this.inputType = 'date';
+    else this.inputType = 'text';
+  }
+
+  hello() {
+    this.type = 'Tout';
   }
 }

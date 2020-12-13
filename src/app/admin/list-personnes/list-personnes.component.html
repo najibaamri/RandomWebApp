@@ -26,6 +26,59 @@
             <h3 class="card-title">Liste Des Personnes</h3>
           </div>
           <!-- /.card-header -->
+          <div class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+              <select
+                class="form-control"
+                type="text"
+                name="type"
+                [(ngModel)]="type"
+                (click)="guessInput()"
+              >
+                <option value="Tout">Tout</option>
+                <option value="Nom">Nom</option>
+                <option value="Prénom">Prénom</option>
+                <option value="Sexe">Sexe</option>
+                <option value="Date de naissance">Date de naissance</option>
+                <option value="Lieu de naissance">Lieu de naissance</option>
+                <option value="Nom du père">Nom du père</option>
+                <option value="Nationalité du père">Nationalité du père</option>
+                <option value="Nom de la mère">Nom de la mère</option>
+                <option value="Nationalité de la mère">
+                  Nationalité de la mère
+                </option>
+                <option value="Situation familiale">Situation familiale</option>
+                <option value="Date de décès">Date de décès</option>
+                <option value="Lieu de décès">Lieu de décès</option>
+              </select>
+
+              <input
+                class="form-control form-control-navbar"
+                type="{{ inputType }}"
+                placeholder="Rechercher"
+                [(ngModel)]="value"
+                (input)="rechercher()"
+                [ngStyle]="{
+                  color: listPersonnes.length != 0 ? '#249c52' : '#99352f',
+                  'background-color':
+                    listPersonnes.length != 0 ? '#b7dba9' : '#debabd'
+                }"
+              />
+
+              <div class="input-group-append">
+                <button class="btn btn-navbar">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              &nbsp;
+
+              <app-nbr-personnes
+                (hideEvent)="hello()"
+                [nbPer]="nbPersonnes"
+              ></app-nbr-personnes>
+            </div>
+          </div>
+
           <div class="card-body">
             <table
               id="example2"
@@ -72,7 +125,7 @@
                   <td>{{ person.nomMere }}</td>
                   <td>{{ person.natioMere }}</td>
                   <td>{{ person.sitFamiliale }}</td>
-                  <td>{{ person.dateDeces }}</td>
+                  <td>{{ person.dateDeces | date: "fullDate" }}</td>
                   <td>{{ person.lieuDeces }}</td>
 
                   <td>
