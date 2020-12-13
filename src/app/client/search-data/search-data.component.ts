@@ -27,7 +27,6 @@ export class SearchDataComponent implements OnInit {
   SearchForm: FormGroup;
   listPersonsN: Personne[];
   listPersonsD: Personne[];
-
   isLoggedIn: boolean;
   username: string;
   CurrentDate = new Date();

@@ -22,7 +22,16 @@
     <div class="row">
       <div class="col-lg-5 d-flex align-items-stretch">
         <div class="info">
-          <img src="assets/front/img/naissance.jpg" />
+          <img
+            [hidden]="type == 'deces'"
+            src="assets/front/img/family.png"
+            style="width: 100%"
+          />
+          <img
+            style="width: 100%"
+            [hidden]="type == 'naissance'"
+            src="assets/front/img/deces.png"
+          />
         </div>
       </div>
 
