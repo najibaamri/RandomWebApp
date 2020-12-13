@@ -1,7 +1,7 @@
 <header id="header" class="fixed-top header-inner-pages">
   <div class="container d-flex align-items-center">
     <h1 class="logo mr-auto">
-      <a href="index.html">RANDO<i class="fas fa-university"></i></a>
+      <a >RANDO<i class="fas fa-university"></i></a>
     </h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo mr-auto"><img src="assets/front/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -34,7 +34,7 @@
       Logout
     </a>
     <a
-      routerLink="/admin/dashboard"
+      href="/admin/dashboard"
       class="get-started-btn scrollto"
       [hidden]="role != 'admin' || !this.authService.isLoggedIn"
     >

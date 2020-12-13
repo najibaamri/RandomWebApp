@@ -92,11 +92,11 @@ export class SearchDataComponent implements OnInit {
     this.SearchForm = new FormGroup({
       nom: new FormControl('', [
         Validators.required,
-        Validators.pattern('[a-zA-Z]+$'),
+        Validators.pattern('[a-zA-Z\s]+$'),
       ]),
       prenom: new FormControl('', [
         Validators.required,
-        Validators.pattern('[a-zA-Z]+$'),
+        Validators.pattern('[a-zA-Z\s]+$'),
       ]),
       dateNaissance: new FormControl('', [Validators.required]),
       dateDeces: new FormControl('', [Validators.required]),

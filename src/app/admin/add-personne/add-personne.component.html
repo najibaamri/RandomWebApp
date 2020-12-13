@@ -48,7 +48,7 @@
                         [(ngModel)]="personne.nom"
                         required
                         #n="ngModel"
-                        pattern="[a-zA-Z]+$"
+                        pattern="[a-zA-Z\s]+$"
                       />
                       <div
                         class="alert alert-danger"
@@ -72,7 +72,7 @@
                         [(ngModel)]="personne.prenom"
                         required
                         #p="ngModel"
-                        pattern="[a-zA-Z]+$"
+                        pattern="[a-zA-Z\s]+$"
                       />
                       <div
                         class="alert alert-danger"
@@ -226,7 +226,7 @@
                         [(ngModel)]="personne.nomPere"
                         required
                         #pe="ngModel"
-                        pattern="[a-zA-Z]+$"
+                        pattern="[a-zA-Z\s]+$"
                       />
                       <div
                         class="alert alert-danger"
@@ -273,7 +273,7 @@
                         [(ngModel)]="personne.nomMere"
                         required
                         #m="ngModel"
-                        pattern="[a-zA-Z]+$"
+                        pattern="[a-zA-Z\s]+$"
                       />
                       <div
                         class="alert alert-danger"
